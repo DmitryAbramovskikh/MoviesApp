@@ -1,6 +1,7 @@
 package com.dmabram15.moviesapp.di
 
 import com.dmabram15.moviesapp.presenter.MovieDetailPresenter
+import com.dmabram15.moviesapp.presenter.MoviesPresenter
 import dagger.Binds
 import dagger.Module
 
@@ -8,6 +9,8 @@ import dagger.Module
 abstract class PresentersModule {
 
     @Binds
-    abstract fun bindMovieDetail(presenter : MovieDetailPresenter) : MovieDetailPresenter
+    abstract fun bindMovieDetailPresenter(presenter : MovieDetailPresenter) : MovieDetailPresenter
 
+    @Binds
+    abstract fun bindMoviesPresenter(presenter : MoviesPresenter) : MoviesPresenter
 }

@@ -12,7 +12,6 @@ import dagger.android.AndroidInjector
 @Component(
     modules = [
         AndroidInjectionModule::class,
-        PresentersModule::class,
         MoviesProviderModule::class,
         MoviesModule::class
     ]

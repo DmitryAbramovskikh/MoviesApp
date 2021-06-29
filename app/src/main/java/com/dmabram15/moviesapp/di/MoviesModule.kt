@@ -4,6 +4,7 @@ import com.dmabram15.moviesapp.data.CloudSource
 import com.dmabram15.moviesapp.data.Source
 import com.dmabram15.moviesapp.data.api.MoviesApi
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -18,7 +19,7 @@ class MoviesModule {
     private val retrofit =
         Retrofit.Builder()
             .baseUrl("https://api.themoviedb.org/3/")
-            .addConverterFactory(GsonConverterFactory.create(Gson()))
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .client(
                 OkHttpClient.Builder()

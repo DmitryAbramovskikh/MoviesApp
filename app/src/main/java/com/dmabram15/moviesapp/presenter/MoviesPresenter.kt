@@ -4,26 +4,36 @@ import com.dmabram15.moviesapp.data.Repository
 import com.dmabram15.moviesapp.model.Movie
 import com.dmabram15.moviesapp.view.MySchedulers
 import com.dmabram15.moviesapp.view.adapter.MoviesView
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import moxy.InjectViewState
 import moxy.MvpPresenter
 import javax.inject.Inject
 
 @InjectViewState
-class MoviesPresenter @Inject constructor(private val repository : Repository) : MvpPresenter<MoviesView>() {
+class MoviesPresenter (private val repository : Repository) : MvpPresenter<MoviesView>() {
 
-    override fun attachView(view: MoviesView?) {
-        super.attachView(view)
+    private val disposables  = CompositeDisposable()
 
-        repository.fetchMovies()
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+
+        disposables.add (
+            repository.fetchMovies()
             .observeOn(MySchedulers.ui())
             .subscribeOn(MySchedulers.io())
             .subscribe(
                 this::fetchMoviesSuccess,
                 this::fetchMoviesError
             )
+        )
     }
 
     private fun fetchMoviesSuccess(movies : List<Movie>) = viewState.showMovies(movies)
 
     private fun fetchMoviesError(error : Throwable) = viewState.showMessage(error.message)
+
+    override fun onDestroy() {
+        disposables.dispose()
+        super.onDestroy()
+    }
 }

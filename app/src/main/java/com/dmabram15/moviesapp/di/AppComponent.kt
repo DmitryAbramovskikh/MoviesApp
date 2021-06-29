@@ -13,7 +13,7 @@ import dagger.android.AndroidInjector
     modules = [
         AndroidInjectionModule::class,
         PresentersModule::class,
-        MoviesModule::class
+        MoviesProviderModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {

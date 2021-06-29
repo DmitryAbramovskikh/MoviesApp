@@ -27,6 +27,15 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildTypes.each {
+        Properties properties = new Properties()
+
+        properties.load(project.rootProject.file("app.properties").newDataInputStream())
+        def tmdbApiKey  = properties.getProperty("TMDB_API_KEY", "")
+        it.buildConfigField "String", "TMDB_API_KEY", tmdbApiKey
+    }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }

@@ -8,8 +8,6 @@ import com.dmabram15.moviesapp.model.Movie
 
 class MoviesAdapter : ListAdapter<Movie, MoviesViewHolder>(MovieDiffUtils) {
 
-    private val payload = Any()
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder =
         MoviesViewHolder(
             ItemMovieBinding.inflate(from(parent.context), parent, false)

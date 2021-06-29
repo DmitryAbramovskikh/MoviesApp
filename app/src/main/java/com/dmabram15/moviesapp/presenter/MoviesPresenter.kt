@@ -7,7 +7,6 @@ import com.dmabram15.moviesapp.view.adapter.MoviesView
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import moxy.InjectViewState
 import moxy.MvpPresenter
-import javax.inject.Inject
 
 @InjectViewState
 class MoviesPresenter (private val repository : Repository) : MvpPresenter<MoviesView>() {

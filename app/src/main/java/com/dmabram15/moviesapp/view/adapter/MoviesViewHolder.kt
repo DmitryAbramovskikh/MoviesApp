@@ -8,8 +8,10 @@ import com.dmabram15.moviesapp.setImageFromUri
 class MoviesViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(movie: Movie) {
+        movie.poster?.let {
+            binding.poster.setImageFromUri(movie.poster)
+        }
         binding.apply {
-            poster.setImageFromUri(movie.poster)
             title.text = movie.title
             productionYear.text = movie.dateProduction
         }

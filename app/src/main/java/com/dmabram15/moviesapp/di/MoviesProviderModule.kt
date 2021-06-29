@@ -5,7 +5,7 @@ import com.dmabram15.moviesapp.data.RepositoryImpl
 import dagger.Binds
 import dagger.Module
 
-@Module ()
+@Module
 abstract class MoviesProviderModule {
 
     @Binds

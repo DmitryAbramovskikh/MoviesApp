@@ -1,8 +1,10 @@
 package com.dmabram15.moviesapp.data.api
 
 import com.dmabram15.moviesapp.model.Movie
+import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MoviesApi {
@@ -13,4 +15,9 @@ interface MoviesApi {
         @Query("language") locale : String
     ) : Single<List<Movie>>
 
+    @GET("movie/{id}")
+    fun fetchMovieById (
+        @Query("api_key") key : String,
+        @Path("id") id : Int
+    ) : Maybe<Movie>
 }

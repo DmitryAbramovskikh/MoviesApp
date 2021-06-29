@@ -12,7 +12,5 @@ class CloudSource (private val moviesApi: MoviesApi) : Source {
 
     override fun fetchMovies(): Single<List<Movie>> = moviesApi.fetchTrendingMovies(apiKey, locale)
 
-    override fun fetchMovieById(movieId: String): Maybe<Movie> {
-        TODO("Not yet implemented")
-    }
+    override fun fetchMovieById(movieId: Int): Maybe<Movie> = moviesApi.fetchMovieById(apiKey, movieId)
 }

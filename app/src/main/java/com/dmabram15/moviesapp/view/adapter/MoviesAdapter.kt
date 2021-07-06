@@ -1,7 +1,7 @@
 package com.dmabram15.moviesapp.view.adapter
 
-import android.view.ViewGroup
 import android.view.LayoutInflater.from
+import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.dmabram15.moviesapp.databinding.ItemMovieBinding
 import com.dmabram15.moviesapp.model.Movie

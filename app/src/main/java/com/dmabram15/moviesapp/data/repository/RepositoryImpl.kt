@@ -16,8 +16,9 @@ class RepositoryImpl @Inject constructor(
         source.fetchMovies()
             .flatMap (storage::retainMovies)
 
+    //TODO Не отображает информацию из хранилища
     override fun fetchMovieById(movieId: Int): Maybe<Movie> =
-        source.fetchMovieById(movieId)
+        storage.fetchMovieById(movieId)
 
     override fun retainMovies(movies: List<Movie>): Single<List<Movie>> =
         storage.retainMovies(movies)

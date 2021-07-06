@@ -27,7 +27,7 @@ class MovieDetailFragment : AbsFragment(R.layout.fragment_movie_detail), MovieDe
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         savedInstanceState?.run {
-            presenter.setMovie(this.getString(MOVIE_ID_KEY, ""))
+            presenter.setMovie(this.getInt(MOVIE_ID_KEY, -1))
         }
     }
 
@@ -48,9 +48,9 @@ class MovieDetailFragment : AbsFragment(R.layout.fragment_movie_detail), MovieDe
     }
 
     companion object {
-        fun newInstance(movieId: String) : MovieDetailFragment {
+        fun newInstance(movieId: Int) : MovieDetailFragment {
             val arguments = Bundle()
-            arguments.putString(MOVIE_ID_KEY, movieId)
+            arguments.putInt(MOVIE_ID_KEY, movieId)
             return MovieDetailFragment().apply{
                 this.arguments = arguments
             }

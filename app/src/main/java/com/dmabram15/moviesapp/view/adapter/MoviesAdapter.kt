@@ -6,11 +6,16 @@ import androidx.recyclerview.widget.ListAdapter
 import com.dmabram15.moviesapp.databinding.ItemMovieBinding
 import com.dmabram15.moviesapp.model.Movie
 
-class MoviesAdapter : ListAdapter<Movie, MoviesViewHolder>(MovieDiffUtils) {
+class MoviesAdapter(private val delegate : Delegate) : ListAdapter<Movie, MoviesViewHolder>(MovieDiffUtils) {
+
+    interface Delegate {
+        fun onMoviePicked(movieId : Int)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder =
         MoviesViewHolder(
-            ItemMovieBinding.inflate(from(parent.context), parent, false)
+            ItemMovieBinding.inflate(from(parent.context), parent, false),
+            delegate
         )
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {

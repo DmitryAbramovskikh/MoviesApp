@@ -11,15 +11,19 @@ import com.dmabram15.moviesapp.presenter.MoviesPresenter
 import com.dmabram15.moviesapp.view.abs.AbsFragment
 import com.dmabram15.moviesapp.view.adapter.MoviesAdapter
 import com.dmabram15.moviesapp.view.adapter.MoviesView
+import com.github.terrakok.cicerone.Router
 import com.google.android.material.snackbar.Snackbar
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import javax.inject.Inject
 
-class MoviesFragment : AbsFragment(R.layout.fragment_movies), MoviesView {
+class MoviesFragment : AbsFragment(R.layout.fragment_movies), MoviesView, MoviesAdapter.Delegate {
 
     private val binding: FragmentMoviesBinding by viewBinding()
     private lateinit var adapter: MoviesAdapter
+
+    @Inject
+    lateinit var router : Router
 
     @Inject
     lateinit var repository: Repository
@@ -29,12 +33,11 @@ class MoviesFragment : AbsFragment(R.layout.fragment_movies), MoviesView {
 
     @ProvidePresenter
     fun providePresenter() : MoviesPresenter {
-        return MoviesPresenter(repository)
+        return MoviesPresenter(repository, router)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initRecycler()
     }
 
@@ -53,7 +56,11 @@ class MoviesFragment : AbsFragment(R.layout.fragment_movies), MoviesView {
     }
 
     private fun initRecycler() {
-        adapter = MoviesAdapter()
+        adapter = MoviesAdapter(this)
         binding.moviesRV.adapter = adapter
+    }
+
+    override fun onMoviePicked(movieId: Int) {
+        presenter.displayMovie(movieId)
     }
 }

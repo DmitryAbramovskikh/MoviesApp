@@ -1,6 +1,6 @@
 package com.dmabram15.moviesapp.presenter
 
-import com.dmabram15.moviesapp.data.Repository
+import com.dmabram15.moviesapp.data.repository.Repository
 import com.dmabram15.moviesapp.model.Movie
 import com.dmabram15.moviesapp.view.MySchedulers
 import com.dmabram15.moviesapp.view.adapter.MoviesView

@@ -1,6 +1,7 @@
 package com.dmabram15.moviesapp.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.dmabram15.moviesapp.R
@@ -9,6 +10,8 @@ import com.dmabram15.moviesapp.databinding.FragmentMovieDetailBinding
 import com.dmabram15.moviesapp.presenter.MovieDetailPresenter
 import com.dmabram15.moviesapp.setImageFromUri
 import com.dmabram15.moviesapp.view.abs.AbsFragment
+import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
 import javax.inject.Inject
 
 const val MOVIE_ID_KEY = "movieId"
@@ -17,16 +20,20 @@ class MovieDetailFragment : AbsFragment(R.layout.fragment_movie_detail), MovieDe
 
     private val binding : FragmentMovieDetailBinding by viewBinding()
 
-    @Inject
+    @InjectPresenter
     lateinit var presenter : MovieDetailPresenter
 
     @Inject
     lateinit var repository: Repository
 
+    @ProvidePresenter
+    fun providePresenter() : MovieDetailPresenter = MovieDetailPresenter(repository)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        savedInstanceState?.run {
-            presenter.setMovie(this.getInt(MOVIE_ID_KEY, -1))
+        arguments?.run {
+            val movieId = this.getInt(MOVIE_ID_KEY, -1)
+            presenter.setMovie(movieId)
         }
     }
 

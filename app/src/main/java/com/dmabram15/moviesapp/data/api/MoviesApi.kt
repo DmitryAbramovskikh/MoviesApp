@@ -20,5 +20,5 @@ interface MoviesApi {
     fun fetchMovieById (
         @Query("api_key") key : String,
         @Path("id") id : Int
-    ) : Maybe<Movie>
+    ) : Single<Movie>
 }

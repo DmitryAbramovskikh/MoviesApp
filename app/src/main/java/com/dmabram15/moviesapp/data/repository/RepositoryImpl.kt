@@ -1,5 +1,6 @@
 package com.dmabram15.moviesapp.data.repository
 
+import android.util.Log
 import com.dmabram15.moviesapp.data.Source
 import com.dmabram15.moviesapp.data.storage.Storage
 import com.dmabram15.moviesapp.model.Movie
@@ -14,10 +15,10 @@ class RepositoryImpl @Inject constructor(
 
     override fun fetchMovies(): Single<List<Movie>> =
         source.fetchMovies()
-            .flatMap (storage::retainMovies)
+            .flatMap(storage::retainMovies)
 
     //TODO Не отображает информацию из хранилища
-    override fun fetchMovieById(movieId: Int): Maybe<Movie> =
+    override fun fetchMovieById(movieId: Int): Single<Movie> =
         storage.fetchMovieById(movieId)
 
     override fun retainMovies(movies: List<Movie>): Single<List<Movie>> =

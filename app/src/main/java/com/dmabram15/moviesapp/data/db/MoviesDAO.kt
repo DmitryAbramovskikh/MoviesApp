@@ -13,8 +13,8 @@ interface MoviesDAO {
     @Query("select * from movies_table")
     fun fetchMovies() : Single<List<Movie>>
 
-    @Query("select * from movies_table where id like :id limit 1")
-    fun fetchMovieById(id : Int) : Maybe<Movie>
+    @Query("select * from movies_table where id like :id")
+    fun fetchMovieById(id : Int) : Single<Movie>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun retainMovies(movies : List<Movie>)

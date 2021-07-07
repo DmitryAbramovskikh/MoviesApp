@@ -17,5 +17,5 @@ class CloudSource (private val moviesApi: MoviesApi) : Source {
     }
 
 
-    override fun fetchMovieById(movieId: Int): Maybe<Movie> = moviesApi.fetchMovieById(apiKey, movieId)
+    override fun fetchMovieById(movieId: Int): Single<Movie> = moviesApi.fetchMovieById(apiKey, movieId)
 }

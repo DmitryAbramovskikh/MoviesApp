@@ -6,5 +6,5 @@ import io.reactivex.rxjava3.core.Single
 
 interface Source {
     fun fetchMovies() : Single<List<Movie>>
-    fun fetchMovieById(movieId : Int) : Maybe<Movie>
+    fun fetchMovieById(movieId : Int) : Single<Movie>
 }

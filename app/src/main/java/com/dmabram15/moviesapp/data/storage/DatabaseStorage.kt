@@ -1,5 +1,6 @@
 package com.dmabram15.moviesapp.data.storage
 
+import android.util.Log
 import com.dmabram15.moviesapp.data.db.MoviesDatabase
 import com.dmabram15.moviesapp.model.Movie
 import io.reactivex.rxjava3.core.Maybe
@@ -18,6 +19,13 @@ class DatabaseStorage @Inject constructor(
     override fun fetchMovies(): Single<List<Movie>> =
         database.moviesDao().fetchMovies()
 
-    override fun fetchMovieById(movieId: Int): Maybe<Movie> =
-        database.moviesDao().fetchMovieById(movieId)
+    override fun fetchMovieById(movieId: Int): Single<Movie> {
+        Log.d("TAG" , movieId.toString())
+        return database.moviesDao().fetchMovieById(movieId)
+            .map { movie->
+                Log.d("TAG", movie.title)
+                movie
+            }
+    }
+
 }

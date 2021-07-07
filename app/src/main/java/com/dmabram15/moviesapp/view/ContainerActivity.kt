@@ -23,6 +23,7 @@ class ContainerActivity : AbsActivity(R.layout.activity_container) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_container)
+
         savedInstanceState ?: router.newRootScreen(movies())
     }
 

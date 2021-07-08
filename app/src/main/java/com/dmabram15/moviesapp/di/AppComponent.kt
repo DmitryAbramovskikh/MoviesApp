@@ -8,23 +8,31 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
+import javax.inject.Singleton
 
-@Component(modules = [AndroidInjectionModule::class])
+@Singleton
+@Component(
+    modules = [
+        AndroidInjectionModule::class,
+        MoviesProviderModule::class,
+        MoviesModule::class
+    ]
+)
 interface AppComponent : AndroidInjector<App> {
 
     @Component.Builder
     interface Builder {
 
         @BindsInstance
-        fun withContext(context : Context): Builder
+        fun withContext(context: Context): Builder
 
         @BindsInstance
-        fun withNaviHolder(holder : NavigatorHolder): Builder
+        fun withNaviHolder(holder: NavigatorHolder): Builder
 
         @BindsInstance
-        fun withRouter(router : Router): Builder
+        fun withRouter(router: Router): Builder
 
-        fun build() : AppComponent
+        fun build(): AppComponent
 
     }
 }

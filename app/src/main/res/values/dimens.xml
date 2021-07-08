@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="image_size">50dp</dimen>
+    <dimen name="large_image_size">150dp</dimen>
+    <dimen name="image_item_margin">16dp</dimen>
+    <dimen name="material_border_space">16dp</dimen>
+    <dimen name="material_column_spacing">8dp</dimen>
+    <dimen name="title_margin_top">24dp</dimen>
+    <dimen name="description_margin_top">8dp</dimen>
+</resources>
